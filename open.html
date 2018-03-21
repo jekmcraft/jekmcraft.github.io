@@ -58,68 +58,10 @@
  <h2>Тест акция!</h2>
  <h3>Скидка на весь донат<h3>
   <p>Заканчивается через</p>
-  <script src="http://megatimer.ru/s/ec4e9c0d97d22cd5c0572ceed2048808.js"></script>
-  <!-- Display the countdown timer in an element -->
-<p id="demo"></p>
 
-<script type="text/javascript">
-jQuery(function($){
-    // Обработчик нажатия на кнопку
-    $('.js-timer--trigger').click(function(event){
-        event.preventDefault();
 
-        let $timer    = $(this).parents('.js-timer');
-        let $numbers  = $timer.find('.js-timer--numbers');
-        let direction = $timer.data('direction') === 'forward' ? true : false;
-        let time      = $timer.data('time');
+<iframe src="http://free.timeanddate.com/countdown/i65v8e9b/n382/cf100/cm0/cu4/ct0/cs0/ca0/cr0/ss0/cac000/cpc000/pcfff/tcfff/fs100/szw320/szh135/tatTime%20left%20to%20Event%20in/tac000/tptTime%20since%20Event%20started%20in/tpc000/mac000/mpc000/iso2018-03-22T00:00:00" allowTransparency="true" frameborder="0" width="320" height="135"></iframe>
 
-        // Запускаем таймер
-        simpleTimer(time, $numbers[0], direction);
-    });
-
-    function simpleTimer(sec, block, forward) {
-        let time  = sec;
-        forward = forward || false;
-
-        let hour = parseInt(time / 3600);
-        if ( hour < 1 ) hour = 0;
-        time = parseInt(time - hour * 3600);
-        // Добавляем ноль перед цифрой, если она только одна
-        if ( hour < 10 ) hour = '0'+hour;
-
-        let minutes	= parseInt(time / 60);
-        if ( minutes < 1 ) minutes = 0;
-        time = parseInt(time - minutes * 60);
-        // Добавляем ноль перед цифрой, если она только одна
-        if ( minutes < 10 ) minutes = '0'+minutes;
-
-        let seconds = time;
-        // Добавляем ноль перед цифрой, если она только одна
-        if ( seconds < 10 ) seconds = '0'+seconds;
-
-        // Обновляем время на странице
-        // Здесть можно изменить шаблон вывода цифр
-        block.innerHTML = hour+':'+minutes+':'+seconds;
-
-        // Продолжаем
-        if (forward) {
-            sec++;
-
-            setTimeout(function(){
-                simpleTimer(sec, block, forward);
-            }, 1000);
-        } else {
-            sec--;
-
-            if ( sec > 0 ) {
-                setTimeout(function(){
-                    simpleTimer(sec, block, forward);
-                }, 1000);
-            }
-        }
-    }
-});
-</script>
  
  
 <footer>
