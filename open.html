@@ -59,9 +59,21 @@
  <h3>Скидка на весь донат<h3>
   <p>Заканчивается через</p>
 
-
-<iframe src="http://free.timeanddate.com/countdown/i65v8e9b/n382/cf100/cm0/cu4/ct0/cs0/ca0/cr0/ss0/cac000/cpc000/pcfff/tcfff/fs100/szw320/szh135/tatTime%20left%20to%20Event%20in/tac000/tptTime%20since%20Event%20started%20in/tpc000/mac000/mpc000/iso2018-03-22T00:00:00" allowTransparency="true" frameborder="0" width="320" height="135"></iframe>
-
+<script>
+function countdown() {
+    time = parseInt(localStorage.time); //All variables in localstorage are strings
+    //Resets timer if cannot parse the localStorage.time variable or if the time is greater than 30 mins
+    if(isNaN(time) || time > (30*60)) {
+        alert("An error occured: time left variable is corrupted, resetting timer");
+        localStorage.time = 30*60; //30 mins in seconds
+        countdown();
+        return null;    
+    }
+    //Decrementing time and recalling the function in 1 second
+    time--;
+    localStorage.time = time;
+    setTimeout('countdown()', 1000);
+  </script>
  
  
 <footer>
