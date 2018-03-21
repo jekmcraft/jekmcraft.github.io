@@ -8,7 +8,40 @@
   <header>
    <h2>Технические работы.</h2>
 <h2>Сайт JekMistCrafting будет доступен 27.03.2018</h2>
-  <iframe src="https://kmblr.ga/files/timer.html"> <iframe src="timer.html">
+  <script language="JavaScript" type="text/javascript">
+<!--
+// выставляем секунды
+var sec=05;
+// выставляем минуты
+var min=00;
+
+function refresh()
+{
+	sec--;
+	if(sec==-01){sec=59; min=min-1;}
+	else{min=min;}
+	if(sec<=9){sec="0" + sec;}
+	time=(min<=9 ? "0"+min : min) + ":" + sec;
+	if(document.getElementById){timer.innerHTML=time;}
+	inter=setTimeout("refresh()", 1000);
+	// действие, если таймер 00:00
+	if(min=='00' && sec=='00'){
+		sec="00";
+		clearInterval(inter);
+		/* выводим сообщение в элемент с id="tut", например <div id="tut"></div> */
+                tut.innerHTML="Таймер завершил свою работу!";
+		
+                /* либо модальное окно */
+                //alert('Таймер завершил свою работу!');
+
+                /* либо переход на какой-то адрес */
+		//window.location='http://www.net-f.ru/';
+                
+                /* либо любой другой Ваш код */
+	}
+}
+//-->
+</script>
 
   </header>
   <footer>
