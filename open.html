@@ -63,33 +63,62 @@
 <p id="demo"></p>
 
 <script type="text/javascript">
-  function startTimer() {
-    var my_timer = document.getElementById("my_timer");
-    var time = my_timer.innerHTML;
-    var arr = time.split(":");
-    var h = arr[0];
-    var m = arr[1];
-    var s = arr[2];
-    if (s == 0) {
-      if (m == 0) {
-        if (h == 0) {
-          alert("Время вышло");
-          window.location.reload();
-          return;
+jQuery(function($){
+    // Обработчик нажатия на кнопку
+    $('.js-timer--trigger').click(function(event){
+        event.preventDefault();
+
+        let $timer    = $(this).parents('.js-timer');
+        let $numbers  = $timer.find('.js-timer--numbers');
+        let direction = $timer.data('direction') === 'forward' ? true : false;
+        let time      = $timer.data('time');
+
+        // Запускаем таймер
+        simpleTimer(time, $numbers[0], direction);
+    });
+
+    function simpleTimer(sec, block, forward) {
+        let time  = sec;
+        forward = forward || false;
+
+        let hour = parseInt(time / 3600);
+        if ( hour < 1 ) hour = 0;
+        time = parseInt(time - hour * 3600);
+        // Добавляем ноль перед цифрой, если она только одна
+        if ( hour < 10 ) hour = '0'+hour;
+
+        let minutes	= parseInt(time / 60);
+        if ( minutes < 1 ) minutes = 0;
+        time = parseInt(time - minutes * 60);
+        // Добавляем ноль перед цифрой, если она только одна
+        if ( minutes < 10 ) minutes = '0'+minutes;
+
+        let seconds = time;
+        // Добавляем ноль перед цифрой, если она только одна
+        if ( seconds < 10 ) seconds = '0'+seconds;
+
+        // Обновляем время на странице
+        // Здесть можно изменить шаблон вывода цифр
+        block.innerHTML = hour+':'+minutes+':'+seconds;
+
+        // Продолжаем
+        if (forward) {
+            sec++;
+
+            setTimeout(function(){
+                simpleTimer(sec, block, forward);
+            }, 1000);
+        } else {
+            sec--;
+
+            if ( sec > 0 ) {
+                setTimeout(function(){
+                    simpleTimer(sec, block, forward);
+                }, 1000);
+            }
         }
-        h--;
-        m = 60;
-        if (h < 10) h = "0" + h;
-      }
-      m--;
-      if (m < 10) m = "0" + m;
-      s = 59;
     }
-    else s--;
-    if (s < 10) s = "0" + s;
-    document.getElementById("my_timer").innerHTML = h+":"+m+":"+s;
-    setTimeout(startTimer, 1000);
-  }
+});
 </script>
  
  
